@@ -1,19 +1,10 @@
-     
-console.log("test1");  
 $(function() {
 	
     function getStatus(){
     	$.get( "http://localhost:8081/getAllReferral", function( data ) {
     	$('.service-status').html("");
 		 for(var i = 0; i < data.length; i++) {			 
-			 $('.service-status').append('<div class="col-lg-3"><div class="well well-lg service-well">\
-                <div class="service-image"><img src="/images/es.png"></div><div><label>Patient Referral :</label><span> ' 
-                + data[i].name + '</span></br><label>referalId :</label><span> ' + data[i].referalId + 
-                '</span></br><label>gender :</label><span> ' + data[i].gender + '</span></br><label>service :</label><span> ' 
-                + data[i].service + '</span></br><label>DOB :</label><span> ' + data[i].dob + 
-                '</span></br><label>contactInfo :</label><span class="' + data[i].contactInfo + '">' + data[i].address + 
-                '</span></div><div class="credentials_'+i+'"></div><button class="btn btn-info delete-service" data-id="'
-                +data[i].referalId+'">Action</button></div></div>');
+			 $('.service-status').append('<div class="col-lg-3"><div class="well well-lg service-well"><div class="service-image"><img src="/images/es.png"></div><div><label>Patient Referral :</label><span> ' + data[i].name + '</span></br><label>referalId :</label><span> ' + data[i].referalId + '</span></br><label>gender :</label><span> ' + data[i].gender + '</span></br><label>service :</label><span> ' + data[i].service + '</span></br><label>DOB :</label><span> ' + data[i].dob + '</span></br><label>contactInfo :</label><span class="' + data[i].contactInfo + '">' + data[i].address + '</span></div><div class="credentials_'+i+'"></div><button class="btn btn-info delete-service" data-id="'+data[i].referalId+'">Action</button></div></div>');
 			 
 			 var credentials =  data[i].credentials;
 			 
@@ -34,18 +25,17 @@ $(function() {
 	   });
     
     }
-     console.log("test");  
+    
     getStatus();
     
     setInterval(function(){		
-		getStatus();	
-    //    console.log("test");    	
-	}, 20000);
+		getStatus();	    	
+	}, 5000);
     
     var refid ="";
     $(document).on("click",".delete-service", function(){     
     	refid = $(this).attr('data-id');       
-        $('#deleteModal h5.modal-body-txt').html('Take action to this request: "' + refid + '"');
+        $('#deleteModal h5.modal-body-txt').html('Take action to this request: "' + refid + '" ');
         $('#deleteModal').modal('show');
         
        }); 
@@ -61,23 +51,21 @@ $(function() {
         success:function(response){
       	  location.reload();
         }
-        });        
     });
-
-    
-    $('#RejectService').click(function(event) {         
+        
+   });
+        $('#rejectService').click(function(event) {         
         $.ajax({
         type:"PUT",
         url:"http://localhost:8080/updateStatus/"+refid+"?status=rejected",
         error:  function(response){
           $('#errProcessModal').modal('show');
-          console.log("not rejected");
         },
         success:function(response){
-            console.log("rejected");
           location.reload();
         }
-        });        
     });
+        
+   });
     
 });

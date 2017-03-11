@@ -34,7 +34,7 @@ public class UpdateReferralStatusApi {
 	        IGenericClient client = config.getClient();
 	        ReferralRequest req = repo.getReferralRequest(id);
 	        System.out.println("Updating Referral Request >>" + req);
-		  System.out.println("Testing");
+	        
 	        if(req !=null)
 	        {
 	        	
@@ -65,6 +65,7 @@ public class UpdateReferralStatusApi {
 		{
 			return ReferralStatusEnum.REJECTED;
 		}
+		
 		return ReferralStatusEnum.ACCEPTED;	
 	}
 	
