@@ -55,11 +55,11 @@ $(function() {
     
     getStatus();
     
-    setInterval(function(){		
+ //    setInterval(function(){		
         
-		getStatus();
+	// 	getStatus();
        
-	}, 5000);
+	// }, 5000);
     
     var refid ="";
     $(document).on("click",".delete-service", function(){     
