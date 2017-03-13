@@ -1,6 +1,6 @@
 $(function() {
 	  function getInitialStatus(){
-    	$.get( "http://localhost:8080/getAllReferral", function( data ) {
+    	$.get( "http://localhost:8080/getAllAcceptedReferral", function( data ) {
     	$('.service-status').html("");
 		 for(var i = 0; i < data.length; i++) {			 
 			 $('.service-status').append('<div class="col-lg-3"><div class="well well-lg service-well"><div class="service-image"><img src="/images/es.png"></div><div><label>Patient Referral :</label><span> ' + data[i].name + '</span></br><label>referalId :</label><span> ' + data[i].referalId + '</span></br><label>gender :</label><span> ' + data[i].gender + '</span></br><label>service :</label><span> ' + data[i].service + '</span></br><label>DOB :</label><span> ' + data[i].dob + '</span></br><label>contactInfo :</label><span class="' + data[i].contactInfo + '">' + data[i].address + '</span></div><div class="credentials_'+i+'"></div><button class="btn btn-info delete-service" data-id="'+data[i].referalId+'">Action</button></div></div>');
@@ -53,13 +53,13 @@ $(function() {
     
     }
     
-    getStatus();
+  //  getStatus();
     
-    setInterval(function(){		
+ //    setInterval(function(){		
         
-		getStatus();
+	// 	getStatus();
        
-	}, 5000);
+	// }, 5000);
     
     var refid ="";
     $(document).on("click",".delete-service", function(){     
@@ -73,7 +73,7 @@ $(function() {
     $('#deleteService').click(function(event) {     	
     	$.ajax({
         type:"PUT",
-        url:"http://localhost:8080/updateStatus/"+refid+"?status=accepted",
+        url:"http://localhost:8080/updateStatus/"+refid+"?status=completed",
         error:  function(response){
       	  $('#errProcessModal').modal('show');
         },

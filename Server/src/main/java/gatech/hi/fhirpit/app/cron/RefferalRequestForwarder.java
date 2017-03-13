@@ -91,7 +91,7 @@ public class RefferalRequestForwarder {
 
 	private String createReqInfo(ReferralRequest req, Patient patient) {
 		
-		
+
 		RequestInfo requestInfo = new RequestInfo();
 		requestInfo.setReferalId(req.getId().getIdPart());
 		for(ResourceReferenceDt rf : req.getSupportingInformation())
@@ -127,14 +127,14 @@ public class RefferalRequestForwarder {
 	
 		
 		System.out.println( patient.getBirthDate() + ">>>>" + patient.getMaritalStatus().getText());
-		
+
      	JSONObject j   = new JSONObject(requestInfo);
-     	
+
     	return j.toString();
 		
 	}
-	
-	
+
+
 //	public static void main(String[] args) {
 //		
 //	    String serverBase = "https://secure-api.hspconsortium.org/FHIRPit/open";
