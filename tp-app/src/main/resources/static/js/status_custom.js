@@ -53,7 +53,7 @@ $(function() {
     
     }
     
-    getStatus();
+   // getStatus();
     
  //    setInterval(function(){		
         
